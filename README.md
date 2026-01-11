@@ -7,6 +7,7 @@ Fit.ly Tech, a subscription-based fitness app in the United States with strong s
 The analysis combined three datasets: account_info, customer_support and user_activity. Data cleaning was performed to correct inconsistencies before analysis.
 
 1.	***Accounts_info Dataset***
+   
 *The table contained 400 rows, no duplicates. All rows were kept for analysis.*
 - customer_id - original values contained a leading “C”, which was removed to align with user_id in other datasets, and the data type was converted to numeric for reliable joins.
 - Email - No missing values or duplicates were detected.
@@ -16,6 +17,7 @@ The analysis combined three datasets: account_info, customer_support and user_ac
 - churn_status - Missing churn_status values were interpreted as “Not Churned”, and the column values were standardized to ensure consistency. A binary churn_flag column was created (1 = churned, 0 = retained).
 
 2.	***Customer_Support Dataset***
+   
 *The table contained 918 row entries of customer support data, no duplicates.*
 - ticket_time - Converted from string to datetime format.
 - user_id - Validated as numeric and aligned with customer_id.
@@ -26,23 +28,36 @@ The analysis combined three datasets: account_info, customer_support and user_ac
 - Comments - High number of nulls; retained but excluded from quantitative analysis.
 
 3.	***User Activity Dataset***
+   
 *The table contained 446 entry rows of subscribers' activities in their various plans and engagement behavior of the feautures of the fitness app.*
 - event_time - Converted from string to datetime.
 - user_id - Validated as numeric and aligned with account data.
 - event_type - Confirmed four expected categories
 
-****DATA MODELLING***
+4. ***Final_df Dataset**
+- The table is a result of merged datasets to aid in the analysis of engagement, customer)support and use_activity to find patterns causing churn. Null values in numeric columns were replaced with 0s for data quality.
 
+- [Here is the Code used for this analysis from Cleaning, to EDA to Visualization](FitlyCode.ipynb)
+
+****DATA MODELLING****
+
+![Data Schema](Dmodel.png)
 
 ## Exploratory Analysis & Visualizations
+
 The analysis focused on engagement, support activity, and plan characteristics, as requested by leadership.
 
 1. Overall Churn Distribution
+   
 •	Fig. 1 shows the proportion of churned vs retained customers. Churn rate in the last two quarters has grown to 28.5%.
-***upload the photo**
+
+![Figure 1: Current State of Churn At Fit.ly Tech](Fig1.png)
    
 2. Engagement Volume Distribution.
+
 Engagement analysis shows a strong relationship between product usage and churn. Customers who churned were highly concentrated at very low engagement levels, while retained customers demonstrated broader and more sustained usage. This indicates that early engagement and successful product activation are critical drivers of retention.
+
+![Figure 2: Distribution of how active subscribers are engaged, and how this results in churn](Fig2.png)
 
 Low-engagement users churn at a much higher rate 53.9% than highly engaged users, who are at 12.6%. Trying to engage customers will improve subscribers' retention rates.
 
@@ -50,37 +65,43 @@ Low-engagement users churn at a much higher rate 53.9% than highly engaged users
    
 The Free plan is more prone to churn, with a churn rate of 41%. Pro plan users have a lower rate of churning of 22.41%.  Combining the churn rates of basic, enterprise, and pro subscribers, this equates to 70% of paid subscribers who left in the last two quarters.
 
-***fig**
+![Figure 3: Which Plans experience a high churn rate?](Fig3.png)
 
 
 4. Churn By Location
+   
 Subscribers from New Jersey, Michigan, and Nebraska show disproportionately higher churn rates, which may indicate regional differences in user needs or marketing misalignment.
 
-***Fig***
+![Figure 4:States affected by Churn](Fig4.png)
 
 
 5. Support Load vs Churn (Box Plot)
-***fig***
 
-Retained users actually contact support more frequently
-Median tickets for retained users (0) is 2, while for churned users (1) is 0.
+![Figure 5: Relationship between customer support and churn](Fig5.png)
+
+Retained users actually contact support more frequently. Median tickets for retained users (0) is 2, while for churned users (1) is 0.
 📌 This means:
-Churned users are NOT contacting support more often than retained users. Churned users mostly have zero or very few tickets, as seen, most churned users sit at 0–1 tickets. A few churned users have high ticket counts (outliers), but they are rare. This suggests that many churned users may be quiet churners; they leave without repeatedly reaching out for help.
+- Churned users are NOT contacting support more often than retained users. Churned users mostly have zero or very few tickets, as seen, most churned users sit at 0–1 tickets. A few churned users have high ticket counts (outliers), but they are rare. This suggests that many churned users may be quiet churners; they leave without repeatedly reaching out for help.
 On the other end, retained subscribers show a wider support interaction range. They have more tickets, a larger spread, and higher maximums. Retained users may experience issues, but stay because support eventually helps them
 
 6. What Topics overload support
 
-***Fig6***
-The distribution of customer support tickets shows that billing-related issues are the most frequent reason subscribers contact support. This suggests that billing problems represent a critical friction point in the customer experience. While billing issues alone do not directly explain churn, unresolved or repeated billing problems are likely contributing to customer dissatisfaction and subsequent churn.
-Billing issues are the most frequent reason customers contact support and are a likely indirect driver of churn, especially when these issues experience long resolution times or repeat occurrences. The billing topic alone constitutes over 35% of the churn rate by topic.
-**fig7**
-Upon closer analysis of the support load and response, it is evident that long hours of resolution are directly responsible for the high rate of churn across all topics. Customers churn primarily due to prolonged support resolution times, regardless of issue type, with churned users experiencing resolution delays nearly three times longer than retained customers. Analysis of average support resolution times by topic and churn status reveals a consistent pattern across all issue types. Customers who churn experience average resolution times of approximately 18–19 hours, compared to 6–7 hours for retained customers. This suggests that prolonged resolution time, rather than the nature of the support issue itself, is a primary driver of churn. Improving response and resolution speed across all support channels, particularly for high-volume topics such as billing, represents a key opportunity to reduce churn.
-**fig8**
+![Figure 6: Issues that arise in the need for support from subscribers](Fig6.png)
+
+- The distribution of customer support tickets shows that billing-related issues are the most frequent reason subscribers contact support. This suggests that billing problems represent a critical friction point in the customer experience. While billing issues alone do not directly explain churn, unresolved or repeated billing problems are likely contributing to customer dissatisfaction and subsequent churn.
+- Billing issues are the most frequent reason customers contact support and are a likely indirect driver of churn, especially when these issues experience long resolution times or repeat occurrences. The billing topic alone constitutes over 35% of the churn rate by topic.
+
+![Figure 7: Topic issues and Churn Rate](Fig7.png)
+
+- Upon closer analysis of the support load and response, it is evident that long hours of resolution are directly responsible for the high rate of churn across all topics. Customers churn primarily due to prolonged support resolution times, regardless of issue type, with churned users experiencing resolution delays nearly three times longer than retained customers. - Analysis of average support resolution times by topic and churn status reveals a consistent pattern across all issue types. Customers who churn experience average resolution times of approximately 18–19 hours, compared to 6–7 hours for retained customers. This suggests that prolonged resolution time, rather than the nature of the support issue itself, is a primary driver of churn. Improving response and resolution speed across all support channels, particularly for high-volume topics such as billing, represents a key opportunity to reduce churn.
+
+![Figure 8: Difference in resolution time between subscribers who churn and those who are retained after seeking support](Fig8.png)
 
 7. Heatmap
+   
 Churned users typically engage with fewer product features. Retained users show broader feature adoption. 
 
-**Heatmap**
+![Heatmap](Fig9.png)
 
 - Low engagement is the strongest churn driver. The negative correlations between churn and engagement metrics indicate an inverse relationship: as user engagement increases, the likelihood of churn decreases. Specifically, the correlation between churn_flag and total_events is –0.42, while the correlation between churn_flag and unique_event_types is –0.43.
 - These values suggest a moderate-to-strong negative relationship, meaning customers who use the product more frequently and explore a wider range of features are significantly less likely to cancel their subscriptions. In contrast, users with limited activity and narrow feature usage show a much higher propensity to churn.
@@ -113,7 +134,7 @@ o	Target: ≤ 8 hours
 •	Flag tickets exceeding 12 hours as high churn risk.
 •	Prioritize billing-related tickets nearing Service Level Agreement (SLA) breach.
 •	Trigger automated retention workflows for delayed resolutions
-________________________________________
+
 ## Final Summary & Recommendations
 
 ### Summary
