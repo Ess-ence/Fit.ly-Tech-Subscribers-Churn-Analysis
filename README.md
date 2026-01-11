@@ -2,9 +2,9 @@
 
 Fit.ly Tech, a subscription-based fitness app in the United States with strong subscriber base across 50 differet states. The management noticed a significant churn rate creeping in Over the past two quarters, and they are interested to find out the cause and practical retention solutions. Retaining customers is absolutely critical for the company. Currently, the  cost of acquiring new users is rising, and every customer who leaves puts more pressure on Marketing and Product. Leadership has asked us to come back with a clear picture of what’s driving churn and some practical actions we can take heading into the next quarter.
 
-## Data Validation and Cleaning
+## Data Validation and Cleaning.
 
-The analysis combined three datasets: account_info, customer_support and user_activity. Data cleaning was performed to correct inconsistencies before analysis.
+The analysis combined three datasets: ***account_info***, ***customer_support*** and ***user_activity***. Data cleaning was performed to correct inconsistencies before analysis.
 
 1.	***Accounts_info Dataset***
    
@@ -34,26 +34,26 @@ The analysis combined three datasets: account_info, customer_support and user_ac
 - user_id - Validated as numeric and aligned with account data.
 - event_type - Confirmed four expected categories
 
-4. ***Final_df Dataset**
+4. ***Final_df Dataset***
 - The table is a result of merged datasets to aid in the analysis of engagement, customer)support and use_activity to find patterns causing churn. Null values in numeric columns were replaced with 0s for data quality.
 
 - [Here is the Code used for this analysis from Cleaning, to EDA to Visualization](FitlyCode.ipynb)
 
-****DATA MODELLING****
+****DATA MODEL****
 
 ![Data Schema](Dmodel.png)
 
-## Exploratory Analysis & Visualizations
+## Exploratory Analysis & Visualizations.
 
 The analysis focused on engagement, support activity, and plan characteristics, as requested by leadership.
 
-1. Overall Churn Distribution
+1. ### Overall Churn Distribution.
    
 •	Fig. 1 shows the proportion of churned vs retained customers. Churn rate in the last two quarters has grown to 28.5%.
 
 ![Figure 1: Current State of Churn At Fit.ly Tech](Fig1.png)
    
-2. Engagement Volume Distribution.
+2. ### Engagement Volume Distribution.
 
 Engagement analysis shows a strong relationship between product usage and churn. Customers who churned were highly concentrated at very low engagement levels, while retained customers demonstrated broader and more sustained usage. This indicates that early engagement and successful product activation are critical drivers of retention.
 
@@ -61,21 +61,21 @@ Engagement analysis shows a strong relationship between product usage and churn.
 
 Low-engagement users churn at a much higher rate 53.9% than highly engaged users, who are at 12.6%. Trying to engage customers will improve subscribers' retention rates.
 
-3. Churn By Plans
+3. ### Churn By Plans.
    
 The Free plan is more prone to churn, with a churn rate of 41%. Pro plan users have a lower rate of churning of 22.41%.  Combining the churn rates of basic, enterprise, and pro subscribers, this equates to 70% of paid subscribers who left in the last two quarters.
 
 ![Figure 3: Which Plans experience a high churn rate?](Fig3.png)
 
 
-4. Churn By Location
+4. ### Churn By Location.
    
 Subscribers from New Jersey, Michigan, and Nebraska show disproportionately higher churn rates, which may indicate regional differences in user needs or marketing misalignment.
 
 ![Figure 4:States affected by Churn](Fig4.png)
 
 
-5. Support Load vs Churn (Box Plot)
+5. ### Support Load vs Churn.
 
 ![Figure 5: Relationship between customer support and churn](Fig5.png)
 
@@ -84,7 +84,7 @@ Retained users actually contact support more frequently. Median tickets for reta
 - Churned users are NOT contacting support more often than retained users. Churned users mostly have zero or very few tickets, as seen, most churned users sit at 0–1 tickets. A few churned users have high ticket counts (outliers), but they are rare. This suggests that many churned users may be quiet churners; they leave without repeatedly reaching out for help.
 On the other end, retained subscribers show a wider support interaction range. They have more tickets, a larger spread, and higher maximums. Retained users may experience issues, but stay because support eventually helps them
 
-6. What Topics overload support
+6. ### What Topics Overload Support.
 
 ![Figure 6: Issues that arise in the need for support from subscribers](Fig6.png)
 
@@ -97,7 +97,7 @@ On the other end, retained subscribers show a wider support interaction range. T
 
 ![Figure 8: Difference in resolution time between subscribers who churn and those who are retained after seeking support](Fig8.png)
 
-7. Heatmap
+7. ### Heatmap
    
 Churned users typically engage with fewer product features. Retained users show broader feature adoption. 
 
@@ -109,45 +109,47 @@ Churned users typically engage with fewer product features. Retained users show 
 
 ## Key Findings
 
-i.	Low engagement is the strongest driver of churn, particularly early in the customer lifecycle.
-ii.	Long support resolution times significantly increase churn risk, regardless of issue type.
-iii.	Billing-related issues are a major friction point and amplify churn when resolution is delayed
-iv.	Many churned users are “silent churners” who leave without engaging support.
-v.	Paid subscribers represent the largest churn volume, despite lower churn rates than free users.
-vi.	Certain geographic regions exhibit systematically higher churn, indicating targeted intervention opportunities.
+1. Low engagement is the strongest driver of churn, particularly early in the customer lifecycle.
+2. Long support resolution times significantly increase churn risk, regardless of issue type.
+3. Billing-related issues are a major friction point and amplify churn when resolution is delayed
+4. Many churned users are “silent churners” who leave without engaging support.
+5. Paid subscribers represent the largest churn volume, despite lower churn rates than free users.
+6. Certain geographic regions exhibit systematically higher churn, indicating targeted intervention opportunities.
 
 ## Business Metric to Monitor
 
 ### Primary KPI
 
-•	Average Support Resolution Time (Active Subscribers)
-o	Current: ~18 hours for churned users
-o	Target: ≤ 8 hours
+Average Support Resolution Time (Active Subscribers)
+
+- 🛑 Current: ~18 hours for churned users
+- 🎯 Target: ≤ 8 hours
 
 ### Secondary KPI
 
-•	Percentage of Tickets Resolved Within Service Level Agreement (SLA)
+- Percentage of Tickets Resolved Within Service Level Agreement (SLA)
 
 ### Operational Actions
 
-•	Establish a Service Level Agreement (SLA) of ≤ 8 hours for support resolution.
-•	Flag tickets exceeding 12 hours as high churn risk.
-•	Prioritize billing-related tickets nearing Service Level Agreement (SLA) breach.
-•	Trigger automated retention workflows for delayed resolutions
+- Establish a Service Level Agreement (SLA) of ≤ 8 hours for support resolution.
+- Flag tickets exceeding 12 hours as high churn risk.
+- Prioritize billing-related tickets nearing Service Level Agreement (SLA) breach.
+- Trigger automated retention workflows for delayed resolutions
 
 ## Final Summary & Recommendations
 
 ### Summary
 
 Churn at Fit.ly Tech is primarily driven by low product engagement and slow customer support resolution, rather than the volume of support issues or plan pricing alone. Customers who fail to activate meaningfully or experience prolonged friction, especially around billing, are significantly more likely to cancel. Retained customers, by contrast, engage more deeply with the product and interact with support successfully when issues arise.
-Practical actions leadership can take
-Fit.ly Tech should consider adopting the following practical solutions
-i.	Set a resolution time target as a Service Level Agreement (SLA) to be below 8 hours. 
-ii.	Flag tickets exceeding 12 hours as high-risk churn subscribers
-iii.	Prioritize billing tickets nearing SLA breach
-iv.	Trigger retention workflows when resolution time exceeds the threshold
 
-### Recommendations
+- Fit.ly Tech should consider adopting the following practical solutions;
+
+1. **Set a resolution time target as a Service Level Agreement (SLA) to be below 8 hours.**
+2. **Flag tickets exceeding 12 hours as high-risk churn subscribers.**
+3. **Prioritize billing tickets nearing SLA breach.**
+4. **Trigger retention workflows when resolution time exceeds the threshold.**
+
+### Recommendations.
 
 1.	Fit.ly Tech should introduce usage-based nudges to its plans and feature the products the platform offers to customers. Specifically, the company should adopt milestone & progress nudges to celebrate user achievements and encourage "habit loops." For the workouts and articles sections of the platform. This will enhance subscribers' engagement to maintain daily or weekly goal streaks, hence retention. Other nudges are re-engagement Nudges that trigger when a user's activity levels drop below a certain threshold to encourage engagement, and Value Reinforcement Nudges to remind users of the benefits they have already received. These nudges are imperative to enhance subscriber retention and reduce the surging churn rate in the long run.
 2.	Fit.ly Tech should invest in faster resolution strategies and infrastructures, especially in billing and technical issues, and enforce SLAs and introduce escalation for delayed tickets.
